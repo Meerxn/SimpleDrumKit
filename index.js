@@ -5,7 +5,8 @@ for (i = 0 ; i < document.querySelectorAll(".drum").length ; i++){
     document.querySelectorAll("button")[i].addEventListener("click",function(){
       var button = this.innerHTML; // this stands for the current one that has been clicked and uses the anon function 
     
-       sound(button);     
+       sound(button);
+       animator(button)  ;   
         
         
     });
@@ -14,6 +15,7 @@ for (i = 0 ; i < document.querySelectorAll(".drum").length ; i++){
 //event is what triggered the key press hence event has a .key attricbute to check for. 
 document.addEventListener("keydown",function(event){
     sound(event.key);
+    animator(event.key) ;   
 
 });
 function sound(key){
@@ -50,6 +52,15 @@ function sound(key){
           default:
 
     }  
+
+}
+function animator(key){
+  var currButton = document.querySelector("."+key);
+  currButton.classList.add("pressed");
+
+  setTimeout(function(){
+    currButton.classList.remove("pressed");
+  },100);
 
 }
 
